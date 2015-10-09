@@ -1,0 +1,32 @@
+import urllib2
+import re
+from bs4 import BeautifulSoup
+
+for minmonth in range(6,25):
+
+	if minmonth==24:
+		maxmonth=9999
+	else:
+		maxmonth=minmonth+1
+	print str(minmonth)+str(maxmonth)
+
+
+	#grap interest
+	opener= urllib2.build_opener()
+	opener.addheaders=[('User-agent', 'Mozilla/5.0')]
+
+
+	url=('https://zhaocaibao.alipay.com/pf/productQuery.htm?pageNum=1&minMonth='+str(minmonth)+'&maxMonth='+str(maxmonth)+'&minAmount=&danbao=1')
+
+	ourUrl= opener.open(url).read()
+
+	soup= BeautifulSoup(ourUrl)
+
+	#title=soup.title.text
+
+	body=soup.find('span', class_='f-18')
+
+	text=re.findall(r'\d+.\d+', body.text)
+
+	outfile=open('wikipedia.txt', 'a')
+	outfile.write('month:'+str(minmonth)+'    interest:'+str(text)+'\n')
