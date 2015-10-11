@@ -9,7 +9,7 @@ app.database = "sample.db"
 
 
 @app.route("/")
-def hello():
+def index():
 	g.db=connect_db()
 	cur=g.db.execute('SELECT * FROM ( SELECT * FROM taobao ORDER BY time  DESC LIMIT 240 )')
 	taobao=[dict(time=row[0], m1=row[1], m2=row[2],m3=row[3],m4=row[4],m5=row[5],m6=row[6],m7=row[7],m8=row[8],m9=row[9], \
@@ -19,9 +19,18 @@ def hello():
 	g.db.close()
 	return render_template('index.html', posts=taobao, row=3)
 
+
+@app.route("/<page>")
+def information(page):
+	
+	return render_template('%s.html' % page )
+
+
+
+
 #connenct to database
 def connect_db():
 	return sqlite3.connect(app.database)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+	app.run(debug=True)

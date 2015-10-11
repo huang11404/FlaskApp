@@ -1,22 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Welcome to Flask!</h1>
-<br>
+<h3>Welcome to Jiyu's Station!</h3>
+<!--
 <p>Click <a href="/logout">here</a> to logout.</p>
-<br><br>
-
-
-
-<h3>Posts:</h3>
-
-
-
-
+-->
+<h3>zhaocaibao interest rate:</h3>
 <br>
-
-
-
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -67,15 +57,11 @@
 	     	<td>{{ posts.m17 }}</td>
 	     	<td>{{ posts.m18 }}</td>
         </tr>
-
         {% endfor %}
-
-        
     </tbody>
-    
-
 </table>
 
+<!--
 {% set testing = 5%}
 
 {% for n in range(0, row ) %}
@@ -83,5 +69,5 @@
 	<h2>{{n}}</h2>
 
 {% endfor %}
-
+-->
 {% endblock %}
