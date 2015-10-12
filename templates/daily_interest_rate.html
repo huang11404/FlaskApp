@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Welcome to Jiyu's Station!</h3>
+<!--
+<p>Click <a href="/logout">here</a> to logout.</p>
+-->
+<h3>daily zhaocaibao interest rate:</h3>
+<br>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+            <th>16</th>
+            <th>17</th>
+            <th>18</th>
+            <th>19</th>
+            <th>20</th>
+            <th>21</th>
+            <th>22</th>
+            <th>23</th>
+            <th>24</th>            
+        </tr>
+    </thead>
+
+    <tbody>
+
+    	{% for posts in posts %}
+
+	    <tr>
+	     	<td>{{ posts.time }}</td>
+	     	<td>{{ posts.m1 }}</td>
+	     	<td>{{ posts.m2 }}</td>
+	     	<td>{{ posts.m3 }}</td>
+	     	<td>{{ posts.m4 }}</td>
+	     	<td>{{ posts.m5 }}</td>
+	     	<td>{{ posts.m6 }}</td>
+	     	<td>{{ posts.m7 }}</td>
+	     	<td>{{ posts.m8 }}</td>
+	     	<td>{{ posts.m9 }}</td>
+	     	<td>{{ posts.m10 }}</td>
+	     	<td>{{ posts.m11 }}</td>
+	     	<td>{{ posts.m12 }}</td>
+	     	<td>{{ posts.m13 }}</td>
+	     	<td>{{ posts.m14 }}</td>
+	     	<td>{{ posts.m15 }}</td>
+	     	<td>{{ posts.m16 }}</td>
+	     	<td>{{ posts.m17 }}</td>
+	     	<td>{{ posts.m18 }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}
