@@ -2,10 +2,130 @@
 {% block content %}
 
 <h3>Welcome to Jiyu's Station!</h3>
+<h4>zhaocaibao interest rate:</h4>
+
+ 
+
+  <script type="text/javascript" src="/static/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="/static/highcharts.js"></script>
+  <script type="text/javascript" src="/static/exporting.js"></script>
+  <script>
+    //左侧Javascript代码
+    $(function () {
+    $('#container').highcharts({
+        title: {
+            text: 'Interest rate by duration from 7 months to more than 24 months',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'Data Source: zhaocaibao.alipay.com',
+            x: -20
+        },
+        xAxis: {
+            categories: {{post_chart[0]}}
+        },
+        yAxis: {
+            title: {
+                text: 'Percent (%)'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '%'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [
+        {
+            name: '24-99',
+            data: {{post_chart[18]}}
+        }, 
+        {
+            name: '23-24',
+            data: {{post_chart[17]}}
+        }, 
+        {
+            name: '22-23',
+            data: {{post_chart[16]}}
+        }, 
+        {
+            name: '21-22',
+            data: {{post_chart[15]}}
+        }, 
+        {
+            name: '20-21',
+            data: {{post_chart[14]}}
+        },  
+        {
+            name: '19-20',
+            data: {{post_chart[13]}}
+        },  
+        {
+            name: '18-19',
+            data: {{post_chart[12]}}
+        },  
+        {
+            name: '17-18',
+            data: {{post_chart[11]}}
+        },  
+        {
+            name: '16-17',
+            data: {{post_chart[10]}}
+        },  
+        {
+            name: '15-16',
+            data: {{post_chart[9]}}
+        },  
+        {
+            name: '14-15',
+            data: {{post_chart[8]}}
+        },  
+        {
+            name: '13-14',
+            data: {{post_chart[7]}}
+        },  
+        {
+            name: '12-13',
+            data: {{post_chart[6]}}
+        },  
+
+        	{
+            name: '11-12',
+            data: {{post_chart[5]}}
+        },  {
+            name: '10-11',
+            data: {{post_chart[4]}}
+        }, {
+            name: '9-10',
+            data: {{post_chart[3]}}
+        }, {
+            name: '8-9',
+            data: {{post_chart[2]}}
+        }, {
+            name: '7-8',
+            data: {{post_chart[1]}}
+        }]
+    });
+});
+		
+  </script>
+
+
+<div id="container" style="min-width:700px;height:400px"></div>
+
+
+ 
 <!--
 <p>Click <a href="/logout">here</a> to logout.</p>
 -->
-<h3>zhaocaibao interest rate:</h3>
 <br>
 <table class="table table-bordered">
     <thead>
