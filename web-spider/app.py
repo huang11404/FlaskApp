@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import pytz
 import sqlite3
+import time
 
 def insert_sqlite(time, m7, m8, m9, m10, m11, m12, m13, m14,  m15, m16, m17, m18, m19, m20, m21, m22, m23, m24):
 	# create a new database if the database doesn't already exist
@@ -36,29 +37,91 @@ current_time=current_time.strftime('%Y-%m-%d %H:%M:%S %Z%z')
 interest=[]
 for minmonth in range(7,25):
 
-	if minmonth==24:
-		maxmonth=9999
-	else:
-		maxmonth=minmonth+1
-	print str(minmonth)+str(maxmonth)
+
+	try:
+
+		if minmonth==24:
+			maxmonth=9999
+		else:
+			maxmonth=minmonth+1
+		print str(minmonth)+str(maxmonth)
 
 
-	#grap interest
-	opener= urllib2.build_opener()
-	opener.addheaders=[('User-agent', 'Mozilla/5.0')]
+		#grap interest
+		opener= urllib2.build_opener()
+		opener.addheaders=[('User-agent', 'Mozilla/5.0')]
 
 
-	url=('https://zhaocaibao.alipay.com/pf/productQuery.htm?pageNum=1&minMonth='+str(minmonth)+'&maxMonth='+str(maxmonth)+'&minAmount=&danbao=1')
+		url=('https://zhaocaibao.alipay.com/pf/productQuery.htm?pageNum=1&minMonth='+str(minmonth)+'&maxMonth='+str(maxmonth)+'&minAmount=&danbao=1')
 
-	ourUrl= opener.open(url).read()
+		ourUrl= opener.open(url).read()
 
-	soup= BeautifulSoup(ourUrl)
+		soup= BeautifulSoup(ourUrl)
 
-	#title=soup.title.text
+		#title=soup.title.text
 
-	body=soup.find('span', class_='f-18')
+		body=soup.find('span', class_='f-18')
 
-	text=re.findall(r'\d+.\d+', body.text)
+		text=re.findall(r'\d+.\d+', body.text)
+	except:
+		time.sleep(5)
+		print 'try again'
+		try:
+
+			if minmonth==24:
+				maxmonth=9999
+			else:
+				maxmonth=minmonth+1
+			print str(minmonth)+str(maxmonth)
+
+
+			#grap interest
+			opener= urllib2.build_opener()
+			opener.addheaders=[('User-agent', 'Mozilla/5.0')]
+
+
+			url=('https://zhaocaibao.alipay.com/pf/productQuery.htm?pageNum=1&minMonth='+str(minmonth)+'&maxMonth='+str(maxmonth)+'&minAmount=&danbao=1')
+
+			ourUrl= opener.open(url).read()
+
+			soup= BeautifulSoup(ourUrl)
+
+			#title=soup.title.text
+
+			body=soup.find('span', class_='f-18')
+
+			text=re.findall(r'\d+.\d+', body.text)
+		except:
+			time.sleep(10)
+			print 'try last time'
+			try:
+
+				if minmonth==24:
+					maxmonth=9999
+				else:
+					maxmonth=minmonth+1
+				print str(minmonth)+str(maxmonth)
+
+
+				#grap interest
+				opener= urllib2.build_opener()
+				opener.addheaders=[('User-agent', 'Mozilla/5.0')]
+
+
+				url=('https://zhaocaibao.alipay.com/pf/productQuery.htm?pageNum=1&minMonth='+str(minmonth)+'&maxMonth='+str(maxmonth)+'&minAmount=&danbao=1')
+
+				ourUrl= opener.open(url).read()
+
+				soup= BeautifulSoup(ourUrl)
+
+				#title=soup.title.text
+
+				body=soup.find('span', class_='f-18')
+
+				text=re.findall(r'\d+.\d+', body.text)
+			except:
+				pass
+
 
 	
 	#outfile=open('../wikipedia.txt', 'a')
